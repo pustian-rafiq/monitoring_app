@@ -29,15 +29,20 @@ app.createServer = () => {
     });
 }
 
-// handle request
 
-//get the parse url
-const parsedUrl = url.parse(req.url, true);
-const path = parsedUrl.pathname;
 
 
 // response handling
 app.handleReqRes = (req, res) => {
+
+    // handle request
+
+    //get the parse url
+    const parsedUrl = url.parse(req.url, true);
+    const path = parsedUrl.pathname;
+    const trimPath = path.replace(/^\/+|\/+$/g, '');
+
+    console.log(trimPath);
     res.end("Hello world");
 
 
