@@ -9,7 +9,8 @@
 
 //Dependencies
 const http = require('http');
-const url = require('url');
+const { handleReqRes } = require('./helpers/handleReqRes');
+
 
 // app object - module scafolding
 const app = {};
@@ -24,29 +25,15 @@ app.createServer = () => {
     const server = http.createServer(app.handleReqRes);
 
     server.listen(app.config.port, () => {
-        console.log(`The server is run ${app.config.port}`);
+        console.log(`The server is run ${app.config.port}`)
 
     });
 }
 
 
+// handle request server
+app.handleReqRes = handleReqRes
 
-
-// response handling
-app.handleReqRes = (req, res) => {
-
-    // handle request
-
-    //get the parse url
-    const parsedUrl = url.parse(req.url, true);
-    const path = parsedUrl.pathname;
-    const trimPath = path.replace(/^\/+|\/+$/g, '');
-
-    console.log(trimPath);
-    res.end("Hello world");
-
-
-}
 
 // start the server
 
